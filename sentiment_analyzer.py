@@ -23,6 +23,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
+from confusion_matrix import cn_matrix
 
 class SentimentAnalyzer:
 
@@ -103,7 +104,7 @@ class SentimentAnalyzer:
 
 		return train_test_indices, X, y
 
-	def trainData(self, X_train, y_train, classifier, num_features = 1000000):
+	def trainData(self, X_train, y_train, classifier, num_features = 2522):
 		pipeline = []
 		model = []
 
@@ -119,9 +120,7 @@ class SentimentAnalyzer:
 
 			print('Training data... Classifier ' + str(name))
 			t = time()
-
 			model.append((name, pl.fit(X_train, y_train)))
-
 			print('Training data completed!')
 			print('Training time: ', round(time()-t, 3), 's\n')
 
@@ -229,6 +228,7 @@ class SentimentAnalyzer:
 			print('Evaluation metrics of Classifier ' + self.clf_names[i] + ':')
 			print('Confusion Matrix: \n{}\n'.format(clf_cm[i]))
 			print('Classification Report: \n{}'.format(clf_cr[i]))
+			(cn_matrix()).show(clf_cm[i])
 			print('======================================================\n')
 
 		print('Comparison of different metrics for the various Classifiers used:\n')

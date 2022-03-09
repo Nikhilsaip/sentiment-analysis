@@ -4,6 +4,7 @@
 # @Last Modified by:   pranit
 # @Last Modified time: 2018-05-17 05:28:57
 
+from cv2 import split
 from sentiment_analyzer import SentimentAnalyzer
 from data_visualizer import DataVisualizer
 from utilities import Utility
@@ -60,13 +61,13 @@ def analyzeVisualize(sentiment):
 
 if __name__ == "__main__":
 
-	do_pickle = False
-	do_train_data = False
-	do_fetch_data = False
-	do_preprocess_data = False
-	do_cross_validation_strategy = False
-	do_holdout_strategy = False
-	do_analyze_visualize = False
+	do_pickle = True
+	do_train_data = True
+	do_fetch_data = True
+	do_preprocess_data = True
+	do_cross_validation_strategy = True
+	do_holdout_strategy = True
+	do_analyze_visualize = True
 
 	# Create 'pickled' and 'plots' directories if not exists
 	Path('./pickled').mkdir(exist_ok = True)
@@ -103,5 +104,7 @@ if __name__ == "__main__":
 	print('\nEnter your review:')
 	user_review = input()
 	verdict = 'Positive' if model_svc.predict([user_review]) == 1 else 'Negative'
+	verdict_mark='✓' if verdict=='Positive' else '❌'
+	print(user_review + verdict_mark,sep='  ')
 	print('\nPredicted sentiment: '+ verdict)
 

@@ -39,7 +39,7 @@ class NltkPreprocessor:
 
 				lemma = self.lemmatize(token, tag)
 				tokenized_doc.append(lemma)
-
+				
 		return ' '.join(tokenized_doc)
 
 	def lemmatize(self, token, tag):

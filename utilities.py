@@ -24,7 +24,7 @@ class Utility:
 		with open('pickled/labels_test.pickle', 'rb') as labels_test:
 			y_test = pickle.load(labels_test)
 
-		num_features = [10000, 50000, 100000, 500000, 1000000]
+		num_features = [10000]#, 50000, 100000, 500000, 1000000]
 		
 		acc = []
 		for i in range(0, len(self.clf)):
